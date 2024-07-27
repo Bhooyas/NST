@@ -8,7 +8,6 @@ import torchvision.transforms as transforms
 from PIL import Image
 import numpy as np
 
-
 def infer_onnx(onnx_path, test_image):
     session = onnxruntime.InferenceSession(onnx_path)
     input_transform = transform = transforms.Compose([
@@ -24,18 +23,9 @@ def infer_onnx(onnx_path, test_image):
     print(result.min(), result.max(), result.shape)
     Image.fromarray(result).show()
 
-
 model = StyleTransfer()
 load_model(model, model_path)
 model.eval()
-
-model.qconfig = torch.quantization.get_default_qconfig('fbgemm')
-
-model_int8 = torch.quantization.quantize_dynamic(
-    model,
-    {torch.nn.InstanceNorm2d, torch.nn.Conv2d},
-    dtype=torch.qint8
-)
 
 dummy_input = torch.randn(1, 3, 500, 500)
 dynamic_axes = {"input": {0: "batch_size", 2: "imgx", 3: "imgy"},

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Style Transfer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="drop-area" ondragover="handleDragOver(event)" ondrop="handleDrop(event)" ondragenter="handleDragEnter(event)" ondragleave="handleDragLeave(event)">
+    <canvas id="canvas" style="display: none;"></canvas>
+    <div class="container">
+      <h1>Neural Style Transfer</h1>
+      <h4 id="model-state">Loading Model...</h4>
+        <div id="preview-container">
+          <img id="output" alt="Processed Image">
+          <button id="save" onclick="downloadImage(event)">Save Image</button>
+          <img id="preview" alt="Style Image" src="/starry_night.jpg">
+        </div>
+        <div id="drop-area-box">
+            <p>Drag and drop an image file on this page</p>
+            <p>or</p>
+            <input type="file" id="fileElem" accept="" onchange="handleFiles(this.files)">
+            <label for="fileElem" id="fileInput">Choose a file from your device</label>
+        </div>
+    </div>
+    <div class="loader">
+      <h1>Model in Inferencing...</h1>
+      <div class="loader-circle"></div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+    <script src="script.js"></script>
+    <script>loadmodel("starry_night")</script>
+</body>
+</html>

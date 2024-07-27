@@ -3,11 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>Nueral Style Transfer</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <input type='file' onchange="inputImage(this);" />
-    <canvas id="canvas"></canvas>
+    <div class="container">
+      <h1>Nueral Style Transfer</h1>
+      <h3>Select the style image</h3>
+      <a href="starry_night.html">
+        <img src="starry_night.jpg" id="preview"/>
+      </a>
+      <a href="rain_princess.html">
+        <img src="rain_princess.jpg" id="preview"/>
+      </a>
+    </div>
   </body>
-  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
-  <script src="script.js"></script>
 </html>
